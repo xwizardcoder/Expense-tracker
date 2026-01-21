@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expense Tracker</title>
+
+  <link rel="stylesheet" href="output.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body class="bg-gray-100">
+
+<header class="sticky top-0 z-10">
+  <nav class="bg-gradient-to-r from-pink-100 to-pink-200 p-3 min-h-[55px] flex justify-between items-center shadow-[_0px_0px_20px_0px_gray] flex-wrap">
+    <h2 class="font-bold text-xl text-black">Expense Tracker</h2>
+
+    <select id="currency" class="p-2 rounded text-red-800">
+      <option value="INR">INR</option>
+      <option value="USD">USD</option>
+    </select>
+  </nav>
+</header>
+
+<main class="flex flex-col items-center gap-8 py-8 justify-center bg-gradient-to-r from-purple-100 to-pink-300 px-3">
+
+ 
+  <div class="bg-white p-6 rounded-xl shadow w-full md:w-[40vw] max-w-[600px] flex flex-col gap-4">
+
+    <label class="font-bold text-lg">Add Salary</label>
+    <input id="sallary-input" type="number" class="border p-2 rounded" placeholder="Add salary">
+
+    <div class="flex justify-end">
+      <button id="sallary-button"
+        class="text-white bg-gradient-to-br from-purple-600 to-blue-500 font-medium rounded-2xl text-sm w-[120px] p-2">
+        Add Salary
+      </button>
+    </div>
+
+    <h2 class="font-bold text-lg flex flex-wrap gap-2">
+      Available Balance:
+      <span id="show-balance"></span>
+    </h2>
+
+    <hr>
+
+    <label class="font-bold text-lg">Add Expense</label>
+    <input id="expense-name" type="text" class="border p-2 rounded" placeholder="Expense name">
+    <input id="expense-amount" type="number" class="border p-2 rounded" placeholder="Amount">
+
+    <div class="flex gap-3 flex-col sm:flex-row">
+      <button id="expense-list" class="bg-red-500 text-white p-2 rounded w-full">
+        Add Expense
+      </button>
+
+      <button id="export-pdf" class="bg-blue-600 text-white p-2 rounded w-full">
+        Export PDF
+      </button>
+    </div>
+  </div>
+
+ 
+  <div class="w-full md:w-[40vw] max-w-[600px] bg-white rounded-xl shadow p-6">
+    <h3 class="font-bold text-lg mb-3">Expenses</h3>
+    <ul id="expense-ui" class="flex flex-col gap-2"></ul>
+  </div>
+
+ 
+  <div class="bg-white p-4 rounded-xl shadow w-full md:w-[40vw] max-w-[600px] h-[300px] flex justify-center items-center">
+    <canvas id="expenseChart"></canvas>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
