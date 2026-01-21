@@ -86,25 +86,40 @@ function renderExpenseList() {
 }
 
 
+
 function renderChart() {
   if (chart) chart.destroy();
+
+  const totalExpense = expenses.reduce((sum, e) => sum + e.amount, 0);
+  const remaining = totalSalary - totalExpense;
 
   chart = new Chart(ctx, {
     type: "doughnut",
     data: {
-      labels: expenses.map(e => e.name),
+      labels: ["Total Expenses", "Remaining Balance"],
       datasets: [
         {
-          data: expenses.map(e => e.amount)
+          data: [totalExpense, remaining < 0 ? 0 : remaining],
+          backgroundColor: ["#ef4444", "#22c55e"] // red & green
         }
       ]
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              return `${context.label}: ${symbol()} ${context.raw.toFixed(2)}`;
+            }
+          }
+        }
+      }
     }
   });
 }
+
 
 
 updateBalance();
